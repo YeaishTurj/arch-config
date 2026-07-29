@@ -1,0 +1,135 @@
+# Base System
+base-devel
+linux
+linux-firmware
+intel-ucode
+grub
+efibootmgr
+mkinitcpio
+sudo
+reflector
+
+# Networking
+networkmanager
+wpa_supplicant
+dnsmasq
+openssh
+
+# Development
+git
+docker
+docker-compose
+zed
+
+# Filesystem Support
+dosfstools
+exfatprogs
+ntfs-3g
+gvfs
+
+# Hyprland
+hyprland
+hyprpaper
+hypridle
+hyprlock
+hyprpolkitagent
+hyprsunset
+
+# Wayland Utilities
+waybar
+fuzzel
+mako
+xdg-desktop-portal-hyprland
+grim
+slurp
+wl-clipboard
+cliphist
+
+# Audio
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+helvum
+pamixer
+playerctl
+
+# Bluetooth
+bluez
+bluez-utils
+blueman
+
+# Display & Graphics
+mesa
+vulkan-intel
+brightnessctl
+
+# Terminal & Shell
+kitty
+fastfetch
+btop
+htop
+tree
+less
+nano
+vim
+man-db
+
+# Browsers
+firefox
+qutebrowser
+
+# File Manager
+pcmanfm
+
+# Image & Graphics
+loupe
+gimp
+
+# Documents & Office
+zathura
+zathura-pdf-mupdf
+libreoffice-fresh
+
+# Media
+mpv
+ffmpeg
+yt-dlp
+obs-studio
+
+# Downloads & Torrent
+qbittorrent
+
+# Communication
+telegram-desktop
+
+# Fonts
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-jetbrains-mono-nerd
+
+# Themes & Appearance
+papirus-icon-theme
+qt5ct
+qt6ct
+kvantum
+
+# Archive Tools
+zip
+unzip
+p7zip
+
+# CLI Utilities
+curl
+wget
+rsync
+ripgrep
+fd
+fzf
+jq
+usbutils
+
+# Disk Management
+gparted

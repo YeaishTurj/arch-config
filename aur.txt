@@ -1,0 +1,20 @@
+# Browsers
+brave-bin
+google-chrome
+
+# Development
+visual-studio-code-bin
+antigravity-ide
+
+# Launcher
+walker-bin
+
+# Input Method
+ibus-avro-git
+
+# Themes & Appearance
+catppuccin-gtk-theme-mocha
+kvantum-theme-catppuccin-git
+
+# Audio
+pwvucontrol
