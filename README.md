@@ -47,7 +47,7 @@ arch-config/
 Clone the repository:
 
 ```bash
-git clone https://github.com/<username>/arch-config.git
+git clone https://github.com/YeaishTurj/arch-config.git
 cd arch-config
 ```
 
