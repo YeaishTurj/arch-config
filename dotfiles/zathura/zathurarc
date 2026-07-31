@@ -1,0 +1,41 @@
+# -----------------------------
+# General
+# -----------------------------
+set selection-clipboard clipboard
+set adjust-open best-fit
+set page-padding 4
+set scroll-page-aware true
+set smooth-scroll true
+
+# UI
+set statusbar-home-tilde true
+set guioptions s
+set font "JetBrainsMono Nerd Font 11"
+
+# Window title
+set window-title-basename true
+
+# Zoom
+set zoom-step 10
+
+# Rendering
+set render-loading true
+
+# History
+set database sqlite
+
+# Keep original PDF colors
+set recolor false
+
+# Previous / Next page using arrow keys
+map <Left> navigate previous
+map <Right> navigate next
+
+# (Optional) Up/Down arrows scroll
+map <Up> scroll up
+map <Down> scroll down
+
+
+map s toggle_single_page_mode
+
+map d toggle_page_mode

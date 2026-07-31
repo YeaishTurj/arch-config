@@ -9,6 +9,7 @@ echo "==> Linking dotfiles..."
 
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.local/share"
+mkdir -p "$HOME/.local/bin"
 
 link_item() {
     local source="$1"
@@ -101,17 +102,28 @@ link_item() {
     done
 }
 
+# -----------------------------
 # ~/.config
-link_item "$ROOT_DIR/dotfiles/hypr"      "$HOME/.config/hypr"
-link_item "$ROOT_DIR/dotfiles/kitty"     "$HOME/.config/kitty"
-link_item "$ROOT_DIR/dotfiles/waybar"    "$HOME/.config/waybar"
-link_item "$ROOT_DIR/dotfiles/fuzzel"    "$HOME/.config/fuzzel"
-link_item "$ROOT_DIR/dotfiles/mpv"       "$HOME/.config/mpv"
-link_item "$ROOT_DIR/dotfiles/mako"      "$HOME/.config/mako"
-link_item "$ROOT_DIR/dotfiles/fastfetch" "$HOME/.config/fastfetch"
-link_item "$ROOT_DIR/dotfiles/zathura"   "$HOME/.config/zathura"
+# -----------------------------
+link_item "$ROOT_DIR/dotfiles/hypr"     "$HOME/.config/hypr"
+link_item "$ROOT_DIR/dotfiles/kitty"    "$HOME/.config/kitty"
+link_item "$ROOT_DIR/dotfiles/waybar"   "$HOME/.config/waybar"
+link_item "$ROOT_DIR/dotfiles/fuzzel"   "$HOME/.config/fuzzel"
+link_item "$ROOT_DIR/dotfiles/mpv"      "$HOME/.config/mpv"
+link_item "$ROOT_DIR/dotfiles/swaync"   "$HOME/.config/swaync"
+link_item "$ROOT_DIR/dotfiles/wlogout"  "$HOME/.config/wlogout"
+link_item "$ROOT_DIR/dotfiles/zathura"  "$HOME/.config/zathura"
 
+# -----------------------------
+# ~/.local/bin
+# -----------------------------
+link_item "$ROOT_DIR/local/bin/hypridle-dpms"     "$HOME/.local/bin/hypridle-dpms"
+link_item "$ROOT_DIR/local/bin/hypridle-lock"     "$HOME/.local/bin/hypridle-lock"
+link_item "$ROOT_DIR/local/bin/hypridle-suspend"  "$HOME/.local/bin/hypridle-suspend"
+
+# -----------------------------
 # ~/.local/share
+# -----------------------------
 link_item "$ROOT_DIR/local/share/power-menu" "$HOME/.local/share/power-menu"
 link_item "$ROOT_DIR/local/share/wifi-menu"  "$HOME/.local/share/wifi-menu"
 

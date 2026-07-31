@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Exit if AC adapter is connected
+if grep -q 1 /sys/class/power_supply/AC*/online 2>/dev/null ||
+   grep -q 1 /sys/class/power_supply/ADP*/online 2>/dev/null; then
+    exit 0
+fi
+
+loginctl lock-session

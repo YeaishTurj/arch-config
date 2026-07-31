@@ -260,3 +260,4 @@ hl.bind(
         "grim - | tee ~/Pictures/Screenshots/$(date +'%F_%H-%M-%S').png | wl-copy"
     )
 )
+

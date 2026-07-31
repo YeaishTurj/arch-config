@@ -3,30 +3,49 @@
     font-size: 14px;
     font-weight: 600;
     min-height: 0;
-}
-
-window#waybar {
-    background: rgba(26, 27, 38, 0.95);
-    color: #c0caf5;
     border: none;
 }
+
+/* =========================
+   Waybar
+   ========================= */
+
+window#waybar {
+    background: #1a1b26;
+    color: #c0caf5;
+    border-bottom: 2px solid #7aa2f7;
+}
+
+/* =========================
+   Tooltip
+   ========================= */
 
 tooltip {
     background: #1a1b26;
     color: #c0caf5;
     border: 1px solid #7aa2f7;
+    border-radius: 8px;
 }
 
+/* =========================
+   Workspaces
+   ========================= */
+
 #workspaces {
-    margin-left: 8px;
+    margin: 0 8px;
 }
 
 #workspaces button {
-    padding: 0 8px;
-    margin: 4px 2px;
+    padding: 0 10px;
+    margin: 4px 3px;
+
     color: #a9b1d6;
     background: transparent;
-    border-radius: 6px;
+
+    border: none;
+    border-radius: 8px;
+
+    transition: all 0.2s ease;
 }
 
 #workspaces button.active {
@@ -39,17 +58,114 @@ tooltip {
     color: #ffffff;
 }
 
+/* =========================
+   Window Title
+   ========================= */
+
 #window {
+    padding: 0 12px;
     color: #c0caf5;
-    padding-left: 12px;
 }
 
+/* =========================
+   Right-side Modules
+   ========================= */
+
+#custom-notification,
 #network,
 #pulseaudio,
+#custom-brightness,
 #battery,
 #clock,
-#tray {
+#tray,
+#custom-power {
     padding: 0 12px;
     margin: 4px 3px;
+
     color: #c0caf5;
+
+    border-radius: 8px;
+
+    transition: all 0.2s ease;
+}
+
+#custom-notification:hover,
+#network:hover,
+#pulseaudio:hover,
+#custom-brightness:hover,
+#battery:hover,
+#clock:hover,
+#tray:hover,
+#custom-power:hover {
+    background: #2a2f45;
+}
+
+/* =========================
+   Battery
+   ========================= */
+
+#battery.warning {
+    color: #e0af68;
+}
+
+#battery.critical {
+    color: #f7768e;
+}
+
+#battery.charging {
+    color: #9ece6a;
+}
+
+/* =========================
+   Notification
+   ========================= */
+
+#custom-notification {
+    font-size: 16px;
+}
+
+/* =========================
+   Power
+   ========================= */
+
+#custom-power {
+    color: #f7768e;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#custom-power:hover {
+    background: #f7768e;
+    color: #1a1b26;
+}
+
+/* =========================
+   Network
+   ========================= */
+
+#network.disconnected {
+    color: #7f849c;
+}
+
+/* =========================
+   Tray
+   ========================= */
+
+#tray {
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    background: #f7768e;
+    border-radius: 6px;
+}
+
+/* Give tray icons a little spacing */
+
+#tray > * {
+    margin: 0 4px;
 }

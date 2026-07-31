@@ -1,18 +1,21 @@
--- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
+-- Dwindle Layout
 hl.config({
     dwindle = {
-        preserve_split = true, -- You probably want this
+        preserve_split = true,
+        smart_split = true,
+        smart_resizing = true,
     },
 })
 
--- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
+-- Master Layout
 hl.config({
     master = {
         new_status = "master",
+        mfact = 0.55,
     },
 })
 
--- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
+-- Scrolling Layout
 hl.config({
     scrolling = {
         fullscreen_on_one_column = true,

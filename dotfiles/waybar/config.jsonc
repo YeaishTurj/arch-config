@@ -1,97 +1,98 @@
 {
-    "layer": "top",
-    "position": "top",
+  "layer": "top",
+  "position": "top",
 
-    "modules-left": [
-        "hyprland/workspaces"
-    ],
+  "modules-left": [
+    
+  ],
 
-    "hyprland/workspaces": {
-        "format": "{icon}",
-        "all-outputs": true,
-        "sort-by-number": true
+
+  "modules-center": [
+    "hyprland/window"
+  ],
+
+  "hyprland/window": {
+    "max-length": 70,
+    "separate-outputs": true
+  },
+
+  "modules-right": [
+    "custom/notification",
+    "tray",
+    "custom/brightness",
+    "pulseaudio",
+    "battery",
+    "clock",
+    "custom/power"
+  ],
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8,
+    "show-passive-items": true
+  },
+
+  "custom/notification": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "swaync-client -t",
+    "on-click-right": "swaync-client -d"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Muted",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "󰦧",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
+    "scroll-step": 5,
+    "tooltip": true,
+    "on-click": "pwvucontrol"
+  },
 
-    "modules-center": [
-        "hyprland/window"
-    ],
+  "custom/brightness": {
+    "exec": "brightnessctl -m | cut -d',' -f4",
+    "interval": 2,
+    "format": "󰃠 {}",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip": false
+  },
 
-    "hyprland/window": {
-        "max-length": 60,
-        "separate-outputs": true
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "ADP0",
+    "states": {
+      "warning": 30,
+      "critical": 15
     },
+    "format": "{capacity}% ",
+    "format-charging": " {capacity}%",
+    "format-full": " 100%",
+    "tooltip": true,
+    "interval": 15
+  },
 
-    "modules-right": [
-        "network",
-        "pulseaudio",
-        "custom/brightness",
-        "battery",
-        "clock"
-    ],
+  "clock": {
+    "format": "{:%a %d %b  %I:%M %p}",
+    "tooltip-format": "{:%A, %d %B %Y\n%I:%M:%S %p}",
+    "interval": 1
+  },
 
-    "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": "󰈀 Ethernet",
-        "format-linked": "󰈀 Connected",
-        "format-disconnected": "󰖪 Offline",
-
-        "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
-        "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}",
-        "tooltip-format-disconnected": "No network connection",
-
-        "on-click": "~/.local/share/wifi-menu/wifi.sh"
-    },
-
-
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟 Muted",
-        "format-icons": {
-            "headphone": "󰋋",
-            "hands-free": "󰋎",
-            "headset": "󰋎",
-            "phone": "",
-            "portable": "󰦧",
-            "car": "",
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        },
-        "scroll-step": 5,
-        "tooltip": true,
-        "on-click": "pwvucontrol"
-    },
-
-    "custom/brightness": {
-        "exec": "brightnessctl -m | cut -d',' -f4",
-        "interval": 1,
-        "format": "󰃠 {}",
-        "on-scroll-up": "brightnessctl set +5%",
-        "on-scroll-down": "brightnessctl set 5%-",
-        "tooltip": false
-    },
-
-    "battery": {
-        "bat": "BAT0",
-        "adapter": "ADP0",
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% ",
-        "format-charging": " {capacity}%",
-        "format-full": " 100%",
-        "tooltip": true,
-        "on-click": "~/.local/share/power-menu/power.sh"
-    },
-
-    "clock": {
-        "format": "{:%a %d %b  %I:%M %p}",
-        "tooltip-format": "{:%A, %d %B %Y\n%I:%M:%S %p}"
-    }
-
-
+  "custom/power": {
+    "format": "",
+    "tooltip": "Power Menu",
+    "on-click": "wlogout --buttons-per-row 3 --column-spacing 24 --row-spacing 24",
+    "on-click-right": "loginctl lock-session"
+  }
 }
