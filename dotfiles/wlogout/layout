@@ -1,18 +1,18 @@
 {
     "label" : "lock",
-    "action" : "loginctl lock-session",
+    "action" : "pidof hyprlock >/dev/null || hyprlock",
     "text" : "Lock",
     "keybind" : "l"
 }
 {
     "label" : "hibernate",
-    "action" : "systemctl hibernate",
+    "action" : "~/.local/bin/hibernate.sh",
     "text" : "Hibernate",
     "keybind" : "h"
 }
 {
     "label" : "logout",
-    "action" : "loginctl terminate-user $USER",
+    "action" : "hyprctl dispatch exit",
     "text" : "Logout",
     "keybind" : "e"
 }

@@ -1,9 +1,10 @@
 -- Dwindle Layout
 hl.config({
     dwindle = {
-        preserve_split = true,
+        preserve_split = false,
         smart_split = true,
         smart_resizing = true,
+        default_split_ratio = 1.0,
     },
 })
 

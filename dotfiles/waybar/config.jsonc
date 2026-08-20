@@ -1,20 +1,25 @@
 {
   "layer": "top",
   "position": "top",
+  "height": 34,
+  "spacing": 0,
+
 
   "modules-left": [
-    
-  ],
+  "hyprland/workspaces"
+],
 
+
+"hyprland/workspaces": {
+  "format": "{name}",
+  "sort-by-number": true,
+  "disable-scroll": true,
+  "all-outputs": false,
+},
 
   "modules-center": [
     "hyprland/window"
   ],
-
-  "hyprland/window": {
-    "max-length": 70,
-    "separate-outputs": true
-  },
 
   "modules-right": [
     "custom/notification",
@@ -26,9 +31,14 @@
     "custom/power"
   ],
 
+  "hyprland/window": {
+    "max-length": 60,
+    "separate-outputs": true
+  },
+
   "tray": {
     "icon-size": 16,
-    "spacing": 8,
+    "spacing": 6,
     "show-passive-items": true
   },
 
@@ -41,7 +51,7 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-muted": "󰝟 Muted",
+    "format-muted": "󰝟 muted",
     "format-icons": {
       "headphone": "󰋋",
       "hands-free": "󰋎",
@@ -49,20 +59,16 @@
       "phone": "",
       "portable": "󰦧",
       "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
+      "default": ["", "", ""]
     },
     "scroll-step": 5,
-    "tooltip": true,
+    "tooltip": false,
     "on-click": "pwvucontrol"
   },
 
   "custom/brightness": {
     "exec": "brightnessctl -m | cut -d',' -f4",
-    "interval": 2,
+    "interval": 5,
     "format": "󰃠 {}",
     "on-scroll-up": "brightnessctl set +5%",
     "on-scroll-down": "brightnessctl set 5%-",
@@ -76,22 +82,25 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}% ",
+    "format": "{capacity}% {icon}",
     "format-charging": " {capacity}%",
     "format-full": " 100%",
-    "tooltip": true,
-    "interval": 15
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": false,
+    "interval": 30
   },
 
-  "clock": {
-    "format": "{:%a %d %b  %I:%M %p}",
-    "tooltip-format": "{:%A, %d %B %Y\n%I:%M:%S %p}",
-    "interval": 1
-  },
+"clock": {
+  "format": "󰃰 {:%a %d %b  %I:%M %p}",
+  "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+  "interval": 60,
+  "on-click": "gsimplecal",
+  "on-click-right": "gsimplecal"
+},
 
   "custom/power": {
     "format": "",
-    "tooltip": "Power Menu",
+    "tooltip": false,
     "on-click": "wlogout --buttons-per-row 3 --column-spacing 24 --row-spacing 24",
     "on-click-right": "loginctl lock-session"
   }

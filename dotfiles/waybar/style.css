@@ -1,158 +1,88 @@
+@define-color bg #1a1b26;
+@define-color surface #24283b;
+@define-color hover #2f3549;
+@define-color fg #c0caf5;
+@define-color muted #a9b1d6;
+@define-color blue #7aa2f7;
+@define-color green #9ece6a;
+@define-color yellow #e0af68;
+@define-color red #f7768e;
+@define-color dim #565f89;
+
 * {
     font-family: "JetBrainsMono Nerd Font";
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     min-height: 0;
     border: none;
+    border-radius: 0;
 }
-
-/* =========================
-   Waybar
-   ========================= */
 
 window#waybar {
-    background: #1a1b26;
-    color: #c0caf5;
-    border-bottom: 2px solid #7aa2f7;
+    background: @bg;
+    color: @fg;
+    border-bottom: 1px solid @blue;
 }
-
-/* =========================
-   Tooltip
-   ========================= */
 
 tooltip {
-    background: #1a1b26;
-    color: #c0caf5;
-    border: 1px solid #7aa2f7;
+    background: @surface;
+    color: @fg;
+    border: 1px solid @blue;
     border-radius: 8px;
 }
 
-/* =========================
-   Workspaces
-   ========================= */
-
-#workspaces {
-    margin: 0 8px;
+tooltip label {
+    padding: 4px 6px;
 }
-
-#workspaces button {
-    padding: 0 10px;
-    margin: 4px 3px;
-
-    color: #a9b1d6;
-    background: transparent;
-
-    border: none;
-    border-radius: 8px;
-
-    transition: all 0.2s ease;
-}
-
-#workspaces button.active {
-    background: #7aa2f7;
-    color: #1a1b26;
-}
-
-#workspaces button:hover {
-    background: #414868;
-    color: #ffffff;
-}
-
-/* =========================
-   Window Title
-   ========================= */
 
 #window {
     padding: 0 12px;
-    color: #c0caf5;
+    color: @muted;
 }
 
-/* =========================
-   Right-side Modules
-   ========================= */
-
 #custom-notification,
-#network,
 #pulseaudio,
 #custom-brightness,
 #battery,
 #clock,
 #tray,
 #custom-power {
-    padding: 0 12px;
-    margin: 4px 3px;
-
-    color: #c0caf5;
-
-    border-radius: 8px;
-
-    transition: all 0.2s ease;
+    padding: 0 9px;
+    margin: 4px 2px;
+    color: @fg;
+    background: transparent;
+    border-radius: 7px;
 }
 
 #custom-notification:hover,
-#network:hover,
 #pulseaudio:hover,
 #custom-brightness:hover,
 #battery:hover,
 #clock:hover,
-#tray:hover,
-#custom-power:hover {
-    background: #2a2f45;
+#tray:hover {
+    background: @hover;
 }
 
-/* =========================
-   Battery
-   ========================= */
+#custom-notification {
+    color: @blue;
+    font-size: 15px;
+}
 
 #battery.warning {
-    color: #e0af68;
+    color: @yellow;
 }
 
 #battery.critical {
-    color: #f7768e;
+    color: @red;
 }
 
-#battery.charging {
-    color: #9ece6a;
+#battery.charging,
+#battery.plugged {
+    color: @green;
 }
-
-/* =========================
-   Notification
-   ========================= */
-
-#custom-notification {
-    font-size: 16px;
-}
-
-/* =========================
-   Power
-   ========================= */
-
-#custom-power {
-    color: #f7768e;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-#custom-power:hover {
-    background: #f7768e;
-    color: #1a1b26;
-}
-
-/* =========================
-   Network
-   ========================= */
-
-#network.disconnected {
-    color: #7f849c;
-}
-
-/* =========================
-   Tray
-   ========================= */
 
 #tray {
-    padding: 0 8px;
+    padding: 0 7px;
 }
 
 #tray > .passive {
@@ -160,12 +90,47 @@ tooltip {
 }
 
 #tray > .needs-attention {
-    background: #f7768e;
-    border-radius: 6px;
+    background: @red;
+    color: @bg;
+    border-radius: 5px;
 }
 
-/* Give tray icons a little spacing */
+#custom-power {
+    color: @red;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0 10px;
+}
 
-#tray > * {
-    margin: 0 4px;
+#custom-power:hover {
+    background: @red;
+    color: @bg;
+}
+
+#workspaces {
+    margin: 4px 8px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    margin: 0 3px;
+    color: @muted;
+    background: transparent;
+    border-radius: 7px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background: @hover;
+    color: @fg;
+}
+
+#workspaces button.active {
+    background: @blue;
+    color: @bg;
+}
+
+#workspaces button.urgent {
+    background: @red;
+    color: @bg;
 }
