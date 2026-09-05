@@ -1,0 +1,241 @@
+# =====================================
+# Zathura Configuration
+# Performance-first / Tokyo Night
+# Engine: zathura + girara + pdf-mupdf
+# =====================================
+
+
+# ---------- General ----------
+
+# No persistent bookmarks/history/input history.
+# Use "sqlite" instead if you want persistent state.
+set database "null"
+
+# Copy mouse selections to the CLIPBOARD selection.
+set selection-clipboard "clipboard"
+set selection-notification false
+
+set incremental-search true
+set nohlsearch false
+set abort-clear-search true
+
+
+# ---------- Display ----------
+
+set adjust-open "best-fit"
+
+set window-width 1024
+set window-height 768
+
+set statusbar-basename true
+set statusbar-home-tilde true
+set statusbar-page-percent true
+
+set window-title-basename true
+set window-title-home-tilde true
+
+set vertical-center false
+
+
+# ---------- Scrolling ----------
+
+set scroll-step 40
+set scroll-hstep 40
+
+# No overlap after a full-page scroll.
+set scroll-full-overlap 0
+
+# Respect page boundaries when scrolling by pages.
+set scroll-page-aware true
+
+# Do not wrap from last page to first.
+set scroll-wrap false
+
+
+# ---------- Zoom ----------
+
+set zoom-step 10
+set zoom-min 10
+set zoom-max 1000
+set zoom-center true
+
+
+# ---------- Rendering ----------
+
+set render-loading true
+set render-loading-bg "#1a1b26"
+set render-loading-fg "#7aa2f7"
+
+# Reasonable cache without excessive memory use.
+set page-cache-size 15
+
+set page-v-padding 4
+set page-h-padding 4
+
+set pages-per-row 1
+set advance-pages-per-row false
+
+# Signal-based file monitoring.
+set filemonitor "signal"
+
+
+# ---------- UI ----------
+
+# c = command line
+# s = statusbar
+set guioptions "sc"
+
+set font "JetBrainsMono Nerd Font 11"
+
+
+# ---------- Tokyo Night ----------
+
+# Recolor PDFs for comfortable dark-mode reading.
+set recolor true
+set recolor-keephue true
+
+set recolor-lightcolor "#c0caf5"
+set recolor-darkcolor "#1a1b26"
+
+# UI surfaces.
+set default-fg "#c0caf5"
+set default-bg "#1a1b26"
+
+# Statusbar.
+set statusbar-fg "#1a1b26"
+set statusbar-bg "#7aa2f7"
+set statusbar-h-padding 8
+set statusbar-v-padding 2
+
+# Input bar.
+set inputbar-fg "#c0caf5"
+set inputbar-bg "#24283b"
+
+# Completion menu.
+set completion-fg "#c0caf5"
+set completion-bg "#1f2335"
+
+set completion-highlight-fg "#1a1b26"
+set completion-highlight-bg "#7aa2f7"
+
+set completion-group-fg "#7aa2f7"
+set completion-group-bg "#1f2335"
+
+# Index.
+set index-fg "#c0caf5"
+set index-bg "#1f2335"
+
+set index-active-fg "#1a1b26"
+set index-active-bg "#9ece6a"
+
+# Notifications.
+set notification-fg "#1a1b26"
+set notification-bg "#9ece6a"
+
+set notification-error-fg "#1a1b26"
+set notification-error-bg "#f7768e"
+
+set notification-warning-fg "#1a1b26"
+set notification-warning-bg "#e0af68"
+
+# Search/highlight colors.
+set highlight-fg "#1a1b26"
+set highlight-color "rgba(122,162,247,0.4)"
+set highlight-active-color "rgba(224,175,104,0.6)"
+
+# Signature colors.
+set signature-success-color "rgba(158,206,106,0.9)"
+set signature-warning-color "rgba(224,175,104,0.9)"
+set signature-error-color "rgba(247,118,142,0.9)"
+
+
+# ---------- Navigation ----------
+
+# Arrow-key navigation.
+map <Left> scroll left
+map <Right> scroll right
+map <Up> scroll up
+map <Down> scroll down
+
+# Page navigation.
+map <PageUp> scroll half-up
+map <PageDown> scroll half-down
+map <Space> scroll full-down
+map <S-Space> scroll full-up
+
+# Vim-style navigation.
+map J scroll half-down
+map K scroll half-up
+
+map <C-d> scroll half-down
+map <C-u> scroll half-up
+
+map <C-f> scroll full-down
+map <C-b> scroll full-up
+
+# Reload.
+map <C-r> reload
+
+
+# ---------- Zoom ----------
+
+map = zoom in
+map + zoom in
+map - zoom out
+
+# Best-fit / width adjustment.
+map z adjust_window best-fit
+map Z adjust_window width
+
+
+# ---------- Layout ----------
+
+# Toggle dual/multiple-page layout.
+map d toggle_page_mode
+
+# Index.
+map i toggle_index
+map <Tab> toggle_index
+
+# Fullscreen.
+map f toggle_fullscreen
+map <F11> toggle_fullscreen
+
+# Statusbar.
+map t toggle_statusbar
+
+
+# ---------- Rotation ----------
+
+map r rotate rotate-cw
+map <S-R> rotate rotate-ccw
+
+
+# ---------- Links ----------
+
+# Follow link.
+map o follow
+
+# Display link target.
+map <S-O> display_link
+
+
+# ---------- Search ----------
+
+map / search forward
+map ? search backward
+
+map n search forward
+map <S-N> search backward
+
+
+# ---------- Presentation ----------
+
+# F5 is the documented presentation-mode binding.
+map <F5> feedkeys <F5>
+
+
+# ---------- Quit ----------
+
+map q quit
+map <C-q> quit

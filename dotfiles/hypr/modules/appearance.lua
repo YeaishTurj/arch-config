@@ -4,20 +4,21 @@
 
 hl.config({
     general = {
-        gaps_in  = 4,
-        gaps_out = 6,
+        gaps_in  = 3,
+        gaps_out = 4,
 
         border_size = 2,
 
         col = {
             active_border = {
                 colors = {
-                    "rgba(33ccffee)",
-                    "rgba(00ff99ee)"
+                    "rgba(7aa2f7ee)",
+                    "rgba(bb9af7ee)"
                 },
                 angle = 45,
+                gradient = true,
             },
-            inactive_border = "rgba(4c566aff)",
+            inactive_border = "rgba(414868ff)",
         },
 
         resize_on_border = true,
@@ -27,11 +28,14 @@ hl.config({
     },
 
     decoration = {
-        rounding = 10,
-        rounding_power = 2.5,
+        rounding = 8,
+        rounding_power = 2.0,
 
         active_opacity = 1.0,
         inactive_opacity = 1.0,
+
+        dim_inactive = false,
+        screen_shader = "",
 
         shadow = {
             enabled = false,
@@ -41,8 +45,5 @@ hl.config({
             enabled = false,
         },
     },
-
-    animations = {
-        enabled = true,
-    },
 })
+

@@ -25,7 +25,7 @@ hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("kitty -e btop"))
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
 
 hl.bind(mainMod .. " + SHIFT + M",
-    hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+    hl.dsp.exec_cmd("wlogout --buttons-per-row 3 --column-spacing 24 --row-spacing 24")
 )
 
 --------------------------------------------------
@@ -79,208 +79,38 @@ hl.bind(mainMod .. " + down",
 -- WORKSPACES
 --------------------------------------------------
 
--- Number row
-hl.bind(
-    mainMod .. " + 1",
-    hl.dsp.focus({ workspace = 1 })
-)
+-- Number row 1–9
+for i = 1, 9 do
+    hl.bind(
+        mainMod .. " + " .. i,
+        hl.dsp.focus({ workspace = i })
+    )
 
-hl.bind(
-    mainMod .. " + SHIFT + 1",
-    hl.dsp.window.move({ workspace = 1 })
-)
-
-hl.bind(
-    mainMod .. " + 2",
-    hl.dsp.focus({ workspace = 2 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 2",
-    hl.dsp.window.move({ workspace = 2 })
-)
-
-hl.bind(
-    mainMod .. " + 3",
-    hl.dsp.focus({ workspace = 3 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 3",
-    hl.dsp.window.move({ workspace = 3 })
-)
-
-hl.bind(
-    mainMod .. " + 4",
-    hl.dsp.focus({ workspace = 4 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 4",
-    hl.dsp.window.move({ workspace = 4 })
-)
-
-hl.bind(
-    mainMod .. " + 5",
-    hl.dsp.focus({ workspace = 5 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 5",
-    hl.dsp.window.move({ workspace = 5 })
-)
-
-hl.bind(
-    mainMod .. " + 6",
-    hl.dsp.focus({ workspace = 6 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 6",
-    hl.dsp.window.move({ workspace = 6 })
-)
-
-hl.bind(
-    mainMod .. " + 7",
-    hl.dsp.focus({ workspace = 7 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 7",
-    hl.dsp.window.move({ workspace = 7 })
-)
-
-hl.bind(
-    mainMod .. " + 8",
-    hl.dsp.focus({ workspace = 8 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 8",
-    hl.dsp.window.move({ workspace = 8 })
-)
-
-hl.bind(
-    mainMod .. " + 9",
-    hl.dsp.focus({ workspace = 9 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + 9",
-    hl.dsp.window.move({ workspace = 9 })
-)
+    hl.bind(
+        mainMod .. " + SHIFT + " .. i,
+        hl.dsp.window.move({ workspace = i })
+    )
+end
 
 
 --------------------------------------------------
 -- NUMPAD WORKSPACES
 --------------------------------------------------
 
--- NumPad 1 — keycode 87
-hl.bind(
-    mainMod .. " + code:87",
-    hl.dsp.focus({ workspace = 1 })
-)
+-- NumPad 1–9 (keycodes from wev)
+local numpad_codes = { 87, 88, 89, 83, 84, 85, 79, 80, 81 }
 
-hl.bind(
-    mainMod .. " + SHIFT + code:87",
-    hl.dsp.window.move({ workspace = 1 })
-)
+for i = 1, 9 do
+    hl.bind(
+        mainMod .. " + code:" .. numpad_codes[i],
+        hl.dsp.focus({ workspace = i })
+    )
 
-
--- NumPad 2 — keycode 88
-hl.bind(
-    mainMod .. " + code:88",
-    hl.dsp.focus({ workspace = 2 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:88",
-    hl.dsp.window.move({ workspace = 2 })
-)
-
-
--- NumPad 3 — keycode 89
-hl.bind(
-    mainMod .. " + code:89",
-    hl.dsp.focus({ workspace = 3 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:89",
-    hl.dsp.window.move({ workspace = 3 })
-)
-
-
--- NumPad 4 — keycode 83
-hl.bind(
-    mainMod .. " + code:83",
-    hl.dsp.focus({ workspace = 4 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:83",
-    hl.dsp.window.move({ workspace = 4 })
-)
-
-
--- NumPad 5 — keycode 84
-hl.bind(
-    mainMod .. " + code:84",
-    hl.dsp.focus({ workspace = 5 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:84",
-    hl.dsp.window.move({ workspace = 5 })
-)
-
-
--- NumPad 6 — keycode 85
-hl.bind(
-    mainMod .. " + code:85",
-    hl.dsp.focus({ workspace = 6 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:85",
-    hl.dsp.window.move({ workspace = 6 })
-)
-
-
--- NumPad 7 — keycode 79
-hl.bind(
-    mainMod .. " + code:79",
-    hl.dsp.focus({ workspace = 7 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:79",
-    hl.dsp.window.move({ workspace = 7 })
-)
-
-
--- NumPad 8 — keycode 80
-hl.bind(
-    mainMod .. " + code:80",
-    hl.dsp.focus({ workspace = 8 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:80",
-    hl.dsp.window.move({ workspace = 8 })
-)
-
-
--- NumPad 9 — keycode 81
-hl.bind(
-    mainMod .. " + code:81",
-    hl.dsp.focus({ workspace = 9 })
-)
-
-hl.bind(
-    mainMod .. " + SHIFT + code:81",
-    hl.dsp.window.move({ workspace = 9 })
-)
+    hl.bind(
+        mainMod .. " + SHIFT + code:" .. numpad_codes[i],
+        hl.dsp.window.move({ workspace = i })
+    )
+end
 
 --------------------------------------------------
 -- SPECIAL WORKSPACE (SCRATCHPAD)
