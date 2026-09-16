@@ -32,7 +32,7 @@ hl.bind(mainMod .. " + SHIFT + M",
 -- WINDOW MANAGEMENT
 --------------------------------------------------
 
-hl.bind("CTRL + space", hl.dsp.window.close())
+hl.bind("ALT + space", hl.dsp.window.close())
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + F",
@@ -40,7 +40,7 @@ hl.bind(mainMod .. " + F",
 )
 
 hl.bind(mainMod .. " + P",
-    hl.dsp.window.pseudo()
+    hl.dsp.window.pin()
 )
 
 hl.bind(mainMod .. " + J",
