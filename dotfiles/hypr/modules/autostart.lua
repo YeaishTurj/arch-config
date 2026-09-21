@@ -18,4 +18,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprsunset --temperature 4500")
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
     hl.exec_cmd("nm-applet --indicator")
+    -- IBus
+    hl.exec_cmd("ibus start --type wayland")
 end)
