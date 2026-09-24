@@ -97,35 +97,23 @@ git clone https://github.com/YeaishTurj/arch-config.git
 cd arch-config
 ```
 
-Run the installation:
-
-```bash
-./scripts/install.sh
-```
-
-This script installs:
-
-- Official Arch packages from `packages.txt`
-- `yay` (if not already installed)
-- AUR packages from `aur.txt`
-
-After installation, create the symbolic links:
-
-```bash
-./scripts/link.sh
-```
-
-Optionally configure services:
-
-```bash
-./scripts/services.sh
-```
-
-Complete any remaining setup:
+Run the complete setup:
 
 ```bash
 ./scripts/setup.sh
 ```
+
+This runs the full installation workflow:
+
+- installs official packages from `packages.txt`
+- installs `yay` if it is not already available
+- installs AUR packages from `aur.txt`
+- creates symbolic links for the dotfiles
+- enables the required system and user services
+- runs the final post-install step, which offers to reboot
+
+The individual scripts can also be run separately when needed: `install.sh`,
+`link.sh`, `services.sh`, and `finish.sh`.
 
 ---
 
@@ -146,10 +134,10 @@ services.sh
     └── enable required systemd services
 
 setup.sh
-    └── additional system configuration
-
-finish.sh
-    └── final cleanup and post-install tasks
+    ├── install.sh
+    ├── link.sh
+    ├── services.sh
+    └── finish.sh
 ```
 
 ---
