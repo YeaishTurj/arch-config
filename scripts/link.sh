@@ -120,6 +120,8 @@ link_item "$ROOT_DIR/dotfiles/zathura"  "$HOME/.config/zathura"
 link_item "$ROOT_DIR/local/bin/hypridle-dpms"     "$HOME/.local/bin/hypridle-dpms"
 link_item "$ROOT_DIR/local/bin/hypridle-lock"     "$HOME/.local/bin/hypridle-lock"
 link_item "$ROOT_DIR/local/bin/hypridle-suspend"  "$HOME/.local/bin/hypridle-suspend"
+link_item "$ROOT_DIR/local/bin/alarm-manager"    "$HOME/.local/bin/alarm-manager"
+link_item "$ROOT_DIR/local/bin/alarm-runner"     "$HOME/.local/bin/alarm-runner"
 
 # -----------------------------
 # ~/.local/share

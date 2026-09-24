@@ -38,7 +38,7 @@ hyprsunset
 # Wayland Utilities
 waybar
 fuzzel
-mako
+swaync
 xdg-desktop-portal-hyprland
 grim
 slurp
@@ -130,6 +130,8 @@ fd
 fzf
 jq
 usbutils
+dialog
+libnotify
 
 # Disk Management
 gparted

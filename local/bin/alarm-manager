@@ -1,0 +1,205 @@
+#!/bin/bash
+
+ALARM_DIR="$HOME/.config/alarm-manager"
+ALARM_FILE="$ALARM_DIR/alarms"
+SYSTEMD_DIR="$HOME/.config/systemd/user"
+
+mkdir -p "$ALARM_DIR" "$SYSTEMD_DIR"
+touch "$ALARM_FILE"
+
+create_timer() {
+    local id="$1"
+    local time="$2"
+    local name="$3"
+
+    cat > "$SYSTEMD_DIR/alarm-${id}.timer" <<EOF
+[Unit]
+Description=Alarm: ${name}
+
+[Timer]
+OnCalendar=*-*-* ${time}:00
+Persistent=false
+AccuracySec=1s
+Unit=alarm-${id}.service
+
+[Install]
+WantedBy=timers.target
+EOF
+
+    cat > "$SYSTEMD_DIR/alarm-${id}.service" <<EOF
+[Unit]
+Description=Alarm: ${name}
+
+[Service]
+Type=oneshot
+Environment="XDG_RUNTIME_DIR=/run/user/%U"
+ExecStart=%h/.local/bin/alarm-runner "${id}"
+EOF
+
+    systemctl --user daemon-reload
+    systemctl --user enable --now "alarm-${id}.timer" >/dev/null
+}
+
+delete_timer() {
+    local id="$1"
+
+    systemctl --user disable --now "alarm-${id}.timer" 2>/dev/null
+
+    rm -f \
+        "$SYSTEMD_DIR/alarm-${id}.timer" \
+        "$SYSTEMD_DIR/alarm-${id}.service"
+
+    systemctl --user daemon-reload
+}
+
+add_alarm() {
+    local name
+    local time
+    local id
+
+    name=$(dialog \
+        --inputbox "Alarm name:" 10 50 \
+        3>&1 1>&2 2>&3)
+
+    [ $? -ne 0 ] && return
+
+    [ -z "$name" ] && return
+
+    time=$(dialog \
+        --inputbox "Time (24-hour HH:MM):" 10 50 \
+        3>&1 1>&2 2>&3)
+
+    [ $? -ne 0 ] && return
+
+    if ! [[ "$time" =~ ^([01][0-9]|2[0-3]):[0-5][0-9]$ ]]; then
+        dialog \
+            --msgbox "Invalid time.\n\nUse HH:MM, for example 18:30." \
+            10 50
+        return
+    fi
+
+    id=$(printf '%s' "$name" |
+        tr '[:upper:]' '[:lower:]' |
+        tr -cs 'a-z0-9' '-')
+
+    id="${id%-}"
+
+    [ -z "$id" ] && id="alarm-$(date +%s)"
+
+    if grep -q "^${id}|" "$ALARM_FILE"; then
+        id="${id}-$(date +%s)"
+    fi
+
+    printf '%s|%s|%s\n' "$id" "$time" "$name" >> "$ALARM_FILE"
+
+    create_timer "$id" "$time" "$name"
+
+    dialog \
+        --msgbox "Alarm added.\n\n$name\n$time" \
+        10 50
+}
+
+list_alarms() {
+    local content=""
+    local id
+    local time
+    local name
+
+    if [ ! -s "$ALARM_FILE" ]; then
+        dialog --msgbox "No alarms set." 8 40
+        return
+    fi
+
+    while IFS='|' read -r id time name; do
+        content+="$(printf '%-10s  %-5s  %s\n' "$id" "$time" "$name")"
+    done < "$ALARM_FILE"
+
+    dialog \
+        --title "Current Alarms" \
+        --msgbox "$content" \
+        15 70
+}
+
+delete_alarm() {
+    local options=()
+    local id
+    local time
+    local name
+    local selected
+    local selected_id
+
+    if [ ! -s "$ALARM_FILE" ]; then
+        dialog --msgbox "No alarms to delete." 8 40
+        return
+    fi
+
+    while IFS='|' read -r id time name; do
+        options+=("$id" "$time - $name")
+    done < "$ALARM_FILE"
+
+    selected=$(dialog \
+        --title "Delete Alarm" \
+        --menu "Select alarm:" \
+        15 70 8 \
+        "${options[@]}" \
+        3>&1 1>&2 2>&3)
+
+    [ $? -ne 0 ] && return
+
+    selected_id="$selected"
+
+    IFS='|' read -r id time name < <(
+        grep "^${selected_id}|" "$ALARM_FILE"
+    )
+
+    dialog \
+        --yesno "Delete this alarm?\n\n$name\n$time" \
+        10 50
+
+    [ $? -ne 0 ] && return
+
+    delete_timer "$id"
+
+    grep -v "^${id}|" "$ALARM_FILE" > "${ALARM_FILE}.tmp"
+    mv "${ALARM_FILE}.tmp" "$ALARM_FILE"
+
+    dialog \
+        --msgbox "Alarm deleted.\n\n$name" \
+        10 50
+}
+
+test_alarm() {
+    local name
+
+    name=$(dialog \
+        --inputbox "Alarm name to test:" 10 50 \
+        3>&1 1>&2 2>&3)
+
+    [ $? -ne 0 ] && return
+
+    [ -z "$name" ] && return
+
+    "$HOME/.local/bin/prayer-alarm" "$name" "$(date '+%H:%M')"
+}
+
+while true; do
+    choice=$(dialog \
+        --clear \
+        --title "Alarm Manager" \
+        --menu "Choose an action:" \
+        15 60 6 \
+        1 "Add Alarm" \
+        2 "View Alarms" \
+        3 "Delete Alarm" \
+        4 "Test Alarm" \
+        5 "Exit" \
+        3>&1 1>&2 2>&3)
+
+    case "$choice" in
+        1) add_alarm ;;
+        2) list_alarms ;;
+        3) delete_alarm ;;
+        4) test_alarm ;;
+        5|"") clear; exit 0 ;;
+    esac
+done
